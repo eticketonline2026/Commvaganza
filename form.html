@@ -9,17 +9,17 @@
 <meta property="og:title" content="Form Pemesanan Tiket - COMMVAGANZA 10.0 | Bandar Lampung 2026">
 <meta property="og:description" content="Lengkapi data pembeli untuk melanjutkan ke pembayaran. Sabtu, 12 September 2026 di Bandar Lampung.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="">
+<meta property="og:image" content="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/banner.png">
 <meta property="og:image:alt" content="Banner COMMVAGANZA 10.0 Bandar Lampung 2026">
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="">
-<link rel="apple-touch-icon" href="">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/logo.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<link rel="preload" as="image" href="" fetchpriority="high">
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/banner.png" fetchpriority="high">
 <title>Form Pemesanan Tiket - COMMVAGANZA 10.0 | Bandar Lampung 2026</title>
 <style>
 :root{
@@ -51,9 +51,7 @@ body {
 
 img { max-width: 100%; }
 
-button, input, select, textarea { -webkit-appearance: none; appearance: none; }
-button { font: inherit; }
-input[type="checkbox"] { -webkit-appearance: auto; appearance: auto; }
+button, input, select, textarea { font: inherit; }
 
 a:focus-visible,
 button:focus-visible,
@@ -103,14 +101,6 @@ textarea:focus-visible {
     border-radius: 10px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.logo-text {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .lang {
@@ -546,13 +536,6 @@ input.error, select.error, textarea.error { border-color: var(--red); background
     object-fit: cover;
 }
 
-.footer-name {
-    height: 24px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 4px;
-}
-
 .footer-contact {
     display: flex;
     flex-direction: column;
@@ -644,8 +627,7 @@ input.error, select.error, textarea.error { border-color: var(--red); background
     <header class="app-header">
         <div class="topbar">
             <a href="index.html" class="logo">
-                <img src="" alt="ETATIX Icon" class="logo-img" width="40" height="40">
-                <img src="" alt="ETATIX" class="logo-text">
+                <img src="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/logo.png" alt="ETATIX Icon" class="logo-img" width="40" height="40">
             </a>
             <div class="lang">🇮🇩 ID</div>
         </div>
@@ -690,7 +672,7 @@ input.error, select.error, textarea.error { border-color: var(--red); background
     <noscript><div class="nojs-warning">⚠️ JavaScript dinonaktifkan. Aktifkan JavaScript di browser Anda untuk melihat ringkasan pesanan dan melanjutkan pemesanan.</div></noscript>
 
     <div class="banner-wrap">
-        <img class="banner-img" src="" alt="COMMVAGANZA 10.0" fetchpriority="high" decoding="async" onerror="this.style.display='none';">
+        <img src="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/banner.png" alt="Banner COMMVAGANZA 10.0" class="banner-img" fetchpriority="high" decoding="async" onerror="this.style.display='none';">
     </div>
 
     <div class="content">
@@ -789,8 +771,7 @@ input.error, select.error, textarea.error { border-color: var(--red); background
 
         <footer class="site-footer">
             <div class="footer-brand">
-                <img src="" alt="Yesplis Icon" class="footer-logo" width="30" height="30" loading="lazy" decoding="async">
-                <img src="" alt="ETATIX" class="footer-name" loading="lazy" decoding="async">
+                <img src="https://raw.githubusercontent.com/eticketonline2026/Commvaganza/main/logo-saya.jpg" alt="Yesplis Icon" class="footer-logo" width="30" height="30" loading="lazy" decoding="async">
             </div>
             <div class="footer-contact">
                 <a class="footer-contact-item" href="https://wa.me/6282385606518" target="_blank" rel="noopener noreferrer">
@@ -1139,17 +1120,10 @@ lanjutBtn.onclick = async function() {
 
   localStorage.setItem('data_pemesan', JSON.stringify(dataPemesan));
 
-  // Simpan data pesanan di browser agar halaman berikutnya bisa menampilkan
-  // ringkasan bila diperlukan. Alur utama tidak lagi bergantung pada Supabase/RPC.
-  localStorage.setItem('data_pemesan', JSON.stringify(dataPemesan));
-
   const pemegangText = holdersData.length > 0
     ? holdersData.map(h => '#' + h.tiket + ': ' + h.nama + ' | ' + h.email + ' | ' + h.wa).join('\n')
     : 'Hanya 1 tiket (sama dengan pemesan)';
 
-  // Kirim notifikasi ke admin melalui Formspree.
-  // Jika Formspree sedang bermasalah, peserta TETAP diteruskan ke qris.html
-  // agar alur pembelian tidak macet.
   const formspreePayload = {
     subject: 'Pesanan Tiket Baru - ' + (namaEl.value.trim() || 'Peserta'),
     nama: namaEl.value.trim(),
@@ -1187,7 +1161,6 @@ lanjutBtn.onclick = async function() {
   localStorage.removeItem('draft_alamat');
   localStorage.removeItem('draft_holders');
 
-  // Selalu lanjut ke halaman QRIS setelah proses form selesai.
   window.location.href = 'qris.html';
 };
 </script>
