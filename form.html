@@ -1154,7 +1154,7 @@ lanjutBtn.onclick = async function() {
       p_ticket_type: kategoriTiket,
       p_qty: jumlahTiket,
       p_unit_price: hargaTiket,
-      p_holders: JSON.stringify(holdersData)
+      p_holders: holdersData
     });
     if (orderError || !orderResult || !orderResult.length) {
       throw orderError || new Error('Order tidak berhasil dibuat di database.');
