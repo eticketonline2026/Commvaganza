@@ -1164,10 +1164,26 @@ lanjutBtn.onclick = async function() {
     localStorage.setItem('commvaganza_ticket_codes', JSON.stringify(orderResult[0].ticket_codes || []));
   } catch (dbError) {
     console.error('Supabase order error:', dbError);
-    alert('Data belum berhasil tersimpan ke sistem tiket. Silakan coba lagi.');
+
+    // Tampilkan detail error agar penyebab kegagalan bisa diketahui langsung.
+    const errorParts = [];
+    if (dbError?.message) errorParts.push('Pesan: ' + dbError.message);
+    if (dbError?.code) errorParts.push('Kode: ' + dbError.code);
+    if (dbError?.details) errorParts.push('Detail: ' + dbError.details);
+    if (dbError?.hint) errorParts.push('Petunjuk: ' + dbError.hint);
+    if (!errorParts.length) errorParts.push(String(dbError));
+
+    const errorText = errorParts.join('\n');
+    alert(
+      'GAGAL MEMBUAT PESANAN\n\n' +
+      errorText +
+      '\n\nSilakan kirim screenshot pesan ini kepada admin agar penyebabnya bisa diperbaiki.'
+    );
+
     isSubmitting = false;
     lanjutBtn.disabled = false;
     lanjutBtn.removeAttribute('aria-busy');
+    lanjutBtn.innerHTML = '<i class=\"fa-solid fa-arrow-right-to-bracket\"></i> LANJUT KE PEMBAYARAN';
     loadingEl.classList.remove('active');
     return;
   }
