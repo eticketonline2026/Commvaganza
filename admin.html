@@ -15,10 +15,12 @@
 (function(){
 const URL='https://uhjkhptfdxfamgnpuwpg.supabase.co',KEY='sb_publishable_4kUpyQSEX7IeHHTbAfaliQ_Em_ng8Ez',db=supabase.createClient(URL,KEY);const $=id=>document.getElementById(id);
 function msg(t){$('loginMsg').textContent=t}
-async function session(){const {data}=await db.auth.getSession();if(data.session)showPanel();}
+async function session(){const {data}=await db.auth.getSession();if(data.session)await verifyAdmin(data.session);}
+async function verifyAdmin(sessionData){const {data,error}=await db.rpc('is_admin');if(error||data!==true){await db.auth.signOut();$('panel').classList.add('hidden');$('login').classList.remove('hidden');msg('Akun berhasil login, tetapi bukan akun admin.');return false}showPanel();return true}
 function showPanel(){$('login').classList.add('hidden');$('panel').classList.remove('hidden');loadReviews();loadStats()}
-$('loginBtn').onclick=async()=>{const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)msg(error.message);else{msg('');showPanel()}};
-$('logout').onclick=()=>db.auth.signOut().then(()=>location.reload());
+$('loginBtn').onclick=async()=>{const btn=$('loginBtn');btn.disabled=true;msg('Memeriksa akun...');const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){msg(error.message);btn.disabled=false;return}const ok=await verifyAdmin(data.session);btn.disabled=false;if(ok)msg('')};
+$('logout').onclick=async()=>{await db.auth.signOut();location.reload()};
+db.auth.onAuthStateChange(async(event,sessionData)=>{if(event==='SIGNED_OUT'){ $('panel').classList.add('hidden'); $('login').classList.remove('hidden'); } else if(event==='SIGNED_IN'&&sessionData){await verifyAdmin(sessionData)}});
 $('refresh').onclick=loadReviews;
 $('paymentsTab').onclick=()=>{$('payments').classList.remove('hidden');$('checkin').classList.add('hidden');$('paymentsTab').classList.add('active');$('checkinTab').classList.remove('active')};
 $('checkinTab').onclick=()=>{$('payments').classList.add('hidden');$('checkin').classList.remove('hidden');$('paymentsTab').classList.remove('active');$('checkinTab').classList.add('active');loadStats()};
