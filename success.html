@@ -214,7 +214,7 @@ h1{font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.3}
         return;
       }
       if(row.status==='CANCELLED'){
-        stopped=true; desc.textContent='Pesanan dibatalkan. Silakan membuat pesanan baru.'; msg.textContent='Order ini tidak dapat digunakan untuk mendapatkan e-ticket.'; pollNum.textContent='Dibatalkan'; return;
+        stopped=true; desc.textContent='Pembayaran ditolak atau pesanan dibatalkan. Silakan membuat pesanan baru jika ingin mencoba kembali.'; msg.textContent='Order ini tidak dapat digunakan untuk mendapatkan e-ticket.'; pollNum.textContent='Ditolak / dibatalkan'; return;
       }
       attempts++;
       const remain=Math.max(0,maxAttempts-attempts); pollNum.textContent=remain+' pemeriksaan tersisa';
