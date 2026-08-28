@@ -13,10 +13,19 @@
 <meta property="og:image:alt" content="Banner COMMVAGANZA 10.0 Bandar Lampung 2026">
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pembayaran QRIS - COMMVAGANZA 10.0 | Bandar Lampung 2026">
+<meta name="twitter:description" content="Selesaikan pembayaran QRIS untuk mengkonfirmasi pesanan Anda. Sabtu, 12 September 2026 di Bandar Lampung.">
+<meta name="twitter:image" content="banner.png">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://uhjkhptfdxfamgnpuwpg.supabase.co" crossorigin>
+<link rel="dns-prefetch" href="https://formspree.io">
+<link rel="prefetch" href="success.html">
+<link rel="preload" as="image" href="qris.png" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <title>Pembayaran QRIS - COMMVAGANZA 10.0 | Bandar Lampung 2026</title>
@@ -24,173 +33,81 @@
 :root{
   --orange:#F97316;--orange-deep:#EA580C;--orange-light:#FFF7ED;--orange-pale:#FED7AA;
   --dark:#7C2D12;--dark-deep:#5C1D0A;
-  --gold:#c99a2e;--gold-light:#f4d98a;
-  --cream:#fffaf0;--ivory:#FFFCF8;
+  --ivory:#FFFCF8;
   --text:#1C1917;--text-sub:#44403C;--text-soft:#57534E;--muted:#A8A29E;
   --line:#E7E5E4;--bg:#FFFBF5;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 50% -5%,rgba(251,191,36,.18),transparent 30%),
-    radial-gradient(800px 400px at 0% 100%,rgba(249,115,22,.07),transparent 60%),
-    radial-gradient(600px 400px at 100% 80%,rgba(236,72,153,.04),transparent 60%),
-    linear-gradient(180deg,var(--bg) 0%,#FFF7ED 100%);
-  color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;padding-bottom:34px;
-  -webkit-tap-highlight-color:transparent;
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
-}
+body{min-height:100vh;background:radial-gradient(circle at 50% -5%,rgba(251,191,36,.18),transparent 30%),radial-gradient(800px 400px at 0% 100%,rgba(249,115,22,.07),transparent 60%),radial-gradient(600px 400px at 100% 80%,rgba(236,72,153,.04),transparent 60%),linear-gradient(180deg,var(--bg) 0%,#FFF7ED 100%);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;padding-bottom:34px;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body.no-scroll{overflow:hidden!important}
 a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outline:3px solid rgba(249,115,22,.45);outline-offset:3px}
-.container{
-  width:100%;max-width:520px;min-height:100vh;margin:auto;
-  background:linear-gradient(180deg,#fff 0%,var(--ivory) 100%);
-  box-shadow:0 0 55px rgba(249,115,22,.06);position:relative;overflow:hidden
-}
-
+.container{width:100%;max-width:520px;min-height:100vh;margin:auto;background:linear-gradient(180deg,#fff 0%,var(--ivory) 100%);box-shadow:0 0 55px rgba(249,115,22,.06);position:relative;overflow:hidden}
 .app-header{position:sticky;top:0;z-index:1000;background:#fff}
-.topbar{
-  min-height:80px;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;
-  background:linear-gradient(180deg,#ffffff 0%,var(--ivory) 100%);
-  border-bottom:1px solid var(--line)
-}
+.topbar{min-height:80px;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,#fff 0%,var(--ivory) 100%);border-bottom:1px solid var(--line)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-img{
-  width:42px;height:42px;border-radius:12px;object-fit:cover;background:#fff;
-  box-shadow:0 4px 14px rgba(28,25,23,.08)
-}
-.logo-text{
-  height:32px;width:auto;object-fit:contain;
-  border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08)
-}
-.lang{
-  padding:8px 13px;border-radius:999px;background:var(--orange-light);border:1px solid var(--orange-pale);
-  font-size:12px;font-weight:700;color:var(--orange-deep)
-}
-.progress{
-  padding:16px 24px 19px;background:linear-gradient(180deg,var(--dark),var(--dark-deep));
-  position:relative;overflow:hidden
-}
-.progress::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 100%,rgba(244,217,138,.13),transparent 50%);
-  pointer-events:none
-}
+.logo-text{height:32px;width:auto;object-fit:contain;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.lang{padding:8px 13px;border-radius:999px;background:var(--orange-light);border:1px solid var(--orange-pale);font-size:12px;font-weight:700;color:var(--orange-deep)}
+.progress{padding:16px 24px 19px;background:linear-gradient(180deg,var(--dark),var(--dark-deep));position:relative;overflow:hidden}
+.progress::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(244,217,138,.13),transparent 50%);pointer-events:none}
 .progress-inner{position:relative;z-index:1}
 .progress-track{position:absolute;top:15px;left:15px;right:15px;height:3px;background:rgba(255,255,255,.16);border-radius:999px}
-.progress-fill{height:100%;width:66.66%;background:linear-gradient(90deg,#fff1b0,#d4af37,#fff0a2);border-radius:999px;box-shadow:0 0 10px rgba(244,217,138,.5);transition:.7s ease}
+.progress-fill{height:100%;width:66.66%;background:linear-gradient(90deg,#fff1b0,#d4af37,#fff0a2);border-radius:999px;box-shadow:0 0 10px rgba(244,217,138,.5)}
 .progress-steps{display:flex;justify-content:space-between;list-style:none}
 .step{display:flex;flex-direction:column;align-items:center;gap:7px;flex:1}
-.step-dot{
-  width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:var(--dark-deep);border:1px solid rgba(255,255,255,.25);font-size:11px;font-weight:800;
-  color:rgba(255,255,255,.55);position:relative
-}
+.step-dot{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--dark-deep);border:1px solid rgba(255,255,255,.25);font-size:11px;font-weight:800;color:rgba(255,255,255,.55);position:relative}
 .step-check{display:none;width:14px;height:14px;stroke:#5c4509;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.step.completed .step-dot{
-  background:linear-gradient(180deg,#fff1ad,#d4af37,#f6df92);border-color:#d4af37;color:#604907;
-  box-shadow:0 4px 14px rgba(212,175,55,.35)
-}
-.step.completed .step-num{display:none}.step.completed .step-check{display:block}
-.step.active .step-dot{
-  background:linear-gradient(180deg,#FB923C,var(--orange));border-color:#FDBA74;color:#fff;
-  box-shadow:0 0 0 5px rgba(249,115,22,.16),0 6px 20px rgba(249,115,22,.38);
-  animation:stepPulse 2.2s ease-in-out infinite
-}
+.step.completed .step-dot{background:linear-gradient(180deg,#fff1ad,#d4af37,#f6df92);border-color:#d4af37;color:#604907;box-shadow:0 4px 14px rgba(212,175,55,.35)}
+.step.completed .step-num{display:none}
+.step.completed .step-check{display:block}
+.step.active .step-dot{background:linear-gradient(180deg,#FB923C,var(--orange));border-color:#FDBA74;color:#fff;box-shadow:0 0 0 5px rgba(249,115,22,.16),0 6px 20px rgba(249,115,22,.38);animation:stepPulse 2.2s ease-in-out infinite}
 .step-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.52);text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
-.step.active .step-label{color:#fff}.step.completed .step-label{color:#f6e6a1}
+.step.active .step-label{color:#fff}
+.step.completed .step-label{color:#f6e6a1}
 @keyframes stepPulse{50%{box-shadow:0 0 0 9px rgba(249,115,22,.07),0 6px 24px rgba(249,115,22,.55)}}
-
 .content{padding:25px 18px 34px}
 .page-title{font-size:22px;font-weight:800;color:var(--text);text-align:center}
 .page-subtitle{font-size:12px;color:var(--text-soft);text-align:center;margin:5px 0 22px}
-
 .banner-wrap{padding:16px 18px 0}
 .banner-img{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 8px 20px rgba(28,25,23,.06)}
-
-.card{
-  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:20px;padding:18px;
-  margin-bottom:16px;box-shadow:0 10px 28px rgba(28,25,23,.04)
-}
+.card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:0 10px 28px rgba(28,25,23,.04)}
 .order-label,.total-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
 .order-id{margin-top:3px;color:var(--orange-deep);font-weight:800;font-size:13px;font-family:monospace;word-break:break-all}
-.total-label{margin-top:15px;margin-bottom:4px}.total-price{font-size:27px;font-weight:800;line-height:1.1;color:var(--text)}
+.total-label{margin-top:15px;margin-bottom:4px}
+.total-price{font-size:27px;font-weight:800;line-height:1.1;color:var(--text)}
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
 .detail-item{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;line-height:1.35}
 .detail-item span{display:block;color:var(--text-sub);font-weight:700;font-size:13px;margin-top:3px;word-break:break-word;text-transform:none;letter-spacing:0}
-
-.timer-box{
-  display:flex;align-items:center;justify-content:space-between;padding:13px 16px;margin-bottom:17px;
-  border:1px solid #ead9a9;border-radius:15px;background:linear-gradient(135deg,#fffef9,#fff8e6)
-}
-.timer-label{font-size:11px;font-weight:700;color:#8a6b25}.timer{font-size:24px;font-weight:800;color:#b17a19;letter-spacing:1.5px}
-.timer.urgent{color:#dc2626;animation:timerPulse .5s ease infinite}@keyframes timerPulse{50%{opacity:.55}}
-
-.qris-frame{
-  width:72%;max-width:370px;margin:0 auto 10px;padding:19px 16px;position:relative;overflow:hidden;
-  border-radius:24px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(249,115,22,.15),transparent 38%),
-    linear-gradient(145deg,#5C1D0A 0%,var(--dark) 52%,#431A07 100%);
-  border:1px solid rgba(249,115,22,.4);
-  box-shadow:0 18px 38px rgba(92,29,10,.45),0 2px 0 rgba(249,115,22,.15) inset
-}
-.qris-frame::before{
-  content:"";position:absolute;inset:7px;border:1px solid rgba(249,115,22,.2);border-radius:18px;pointer-events:none
-}
-.qris-frame::after{
-  content:"";position:absolute;top:0;left:9%;right:9%;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(249,115,22,.5),transparent)
-}
-.qris-frame-glow{
-  position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:210px;height:210px;
-  background:radial-gradient(circle,rgba(249,115,22,.25),transparent 68%);pointer-events:none
-}
-.qris-frame-header{
-  display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;padding-bottom:12px;
-  border-bottom:1px solid rgba(255,255,255,.2);position:relative;z-index:1
-}
+.timer-box{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;margin-bottom:17px;border:1px solid #ead9a9;border-radius:15px;background:linear-gradient(135deg,#fffef9,#fff8e6)}
+.timer-label{font-size:11px;font-weight:700;color:#8a6b25}
+.timer{font-size:24px;font-weight:800;color:#b17a19;letter-spacing:1.5px}
+.timer.urgent{color:#dc2626;animation:timerPulse .5s ease infinite}
+@keyframes timerPulse{50%{opacity:.55}}
+.qris-frame{width:72%;max-width:370px;margin:0 auto 10px;padding:19px 16px;position:relative;overflow:hidden;border-radius:24px;background:radial-gradient(circle at 50% 0%,rgba(249,115,22,.15),transparent 38%),linear-gradient(145deg,#5C1D0A 0%,var(--dark) 52%,#431A07 100%);border:1px solid rgba(249,115,22,.4);box-shadow:0 18px 38px rgba(92,29,10,.45),0 2px 0 rgba(249,115,22,.15) inset}
+.qris-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(249,115,22,.2);border-radius:18px;pointer-events:none}
+.qris-frame::after{content:"";position:absolute;top:0;left:9%;right:9%;height:2px;background:linear-gradient(90deg,transparent,rgba(249,115,22,.5),transparent)}
+.qris-frame-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:210px;height:210px;background:radial-gradient(circle,rgba(249,115,22,.25),transparent 68%);pointer-events:none}
+.qris-frame-header{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.2);position:relative;z-index:1}
 .qris-frame-logo{width:25px;height:25px;border-radius:7px;object-fit:cover;background:#fff}
-.qris-frame-brand{
-  font-size:18px;font-weight:800;letter-spacing:1px;
-  color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.2)
-}
+.qris-frame-brand{font-size:18px;font-weight:800;letter-spacing:1px;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.2)}
 .qris-frame-body{text-align:center;position:relative;z-index:1}
-.qris-qr-wrap{
-  display:inline-block;padding:9px;background:#fff;border:4px solid var(--orange);border-radius:12px;
-  margin-bottom:12px;box-shadow:0 8px 22px rgba(249,115,22,.25);position:relative;overflow:hidden
-}
+.qris-qr-wrap{display:inline-block;padding:9px;background:#fff;border:4px solid var(--orange);border-radius:12px;margin-bottom:12px;box-shadow:0 8px 22px rgba(249,115,22,.25);position:relative;overflow:hidden}
 .qris-qr-wrap img{display:block;width:150px;height:150px;border-radius:5px;object-fit:contain}
-.qris-scan-line{
-  position:absolute;left:9px;right:9px;height:2px;background:linear-gradient(90deg,transparent,#FDBA74,transparent);
-  box-shadow:0 0 10px 2px rgba(249,115,22,.5);top:9px;z-index:2;animation:scanMove 2.2s ease-in-out infinite alternate
-}
+.qris-scan-line{position:absolute;left:9px;right:9px;height:2px;background:linear-gradient(90deg,transparent,#FDBA74,transparent);box-shadow:0 0 10px 2px rgba(249,115,22,.5);top:9px;z-index:2;animation:scanMove 2.2s ease-in-out infinite alternate}
 @keyframes scanMove{0%{top:9px}100%{top:calc(100% - 12px)}}
 .qris-frame-label{font-size:27px;font-weight:800;font-style:italic;letter-spacing:2.5px;line-height:1;color:#fff;margin-bottom:4px}
 .qris-frame-standard{font-size:8px;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.9px;margin-bottom:10px}
-.qris-frame-scan{
-  display:inline-block;padding:6px 12px;border:1px solid rgba(249,115,22,.5);border-radius:999px;
-  background:rgba(249,115,22,.1);font-size:9px;font-weight:800;color:#FDBA74;text-transform:uppercase;letter-spacing:1px
-}
+.qris-frame-scan{display:inline-block;padding:6px 12px;border:1px solid rgba(249,115,22,.5);border-radius:999px;background:rgba(249,115,22,.1);font-size:9px;font-weight:800;color:#FDBA74;text-transform:uppercase;letter-spacing:1px}
 .qris-amount-box{margin-top:14px;padding-top:13px;border-top:1px solid rgba(255,255,255,.2)}
 .qris-amount-label{font-size:8px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px}
-.qris-amount-val{
-  font-size:24px;font-weight:800;margin-top:4px;display:inline-block;color:#fff;
-  filter:drop-shadow(0 0 6px rgba(249,115,22,.4));animation:amountGlow 2.5s ease-in-out infinite
-}
+.qris-amount-val{font-size:24px;font-weight:800;margin-top:4px;display:inline-block;color:#fff;filter:drop-shadow(0 0 6px rgba(249,115,22,.4));animation:amountGlow 2.5s ease-in-out infinite}
 @keyframes amountGlow{50%{filter:drop-shadow(0 0 12px rgba(249,115,22,.6))}}
 .qris-frame-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.2);position:relative;z-index:1}
 .qris-frame-nmid{font-size:7px;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.4px}
 .qris-frame-methods{display:flex;gap:9px;font-size:11px;color:rgba(253,186,116,.8)}
 .scan-hint{margin:0 0 18px;font-size:11px;color:var(--text-soft);display:flex;align-items:center;justify-content:center;gap:6px}
 .scan-hint i{color:var(--orange)}
-
-.upload-area{
-  border:1.5px solid var(--orange-pale);border-radius:17px;padding:24px 16px;text-align:center;cursor:pointer;
-  background:linear-gradient(180deg,#fff,var(--orange-light));transition:.25s;display:block
-}
+.upload-area{border:1.5px solid var(--orange-pale);border-radius:17px;padding:24px 16px;text-align:center;cursor:pointer;background:linear-gradient(180deg,#fff,var(--orange-light));transition:.25s;display:block}
 .upload-area:hover{transform:translateY(-2px);border-color:var(--orange);box-shadow:0 8px 22px rgba(249,115,22,.08)}
 .upload-area:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.15)}
 .upload-icon{font-size:34px;margin-bottom:9px;display:block;color:var(--orange)}
@@ -206,33 +123,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
 .checkbox-wrap{margin-top:15px;display:flex;gap:10px;align-items:flex-start;background:var(--bg);padding:11px;border-radius:11px;border:1px solid var(--line)}
 .checkbox-wrap input[type=checkbox]{width:19px;height:19px;min-width:19px;accent-color:var(--orange);cursor:pointer;margin-top:2px}
 .checkbox-wrap label{font-size:11px;line-height:1.5;color:var(--text-soft);cursor:pointer}
-.submit-btn{
-  width:100%;padding:14px;border:0;border-radius:13px;font-weight:800;font-size:13px;cursor:pointer;
-  background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;transition:.25s;
-  box-shadow:0 8px 20px rgba(249,115,22,.22);margin-top:15px;display:flex;justify-content:center;align-items:center;gap:8px;
-  font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;-webkit-user-select:none;user-select:none;
-  position:relative;overflow:hidden
-}
+.submit-btn{width:100%;padding:14px;border:0;border-radius:13px;font-weight:800;font-size:13px;cursor:pointer;background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;transition:.25s;box-shadow:0 8px 20px rgba(249,115,22,.22);margin-top:15px;display:flex;justify-content:center;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;-webkit-user-select:none;user-select:none;position:relative;overflow:hidden}
 .submit-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .6s ease}
 .submit-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 11px 25px rgba(249,115,22,.3)}
 .submit-btn:hover:not(:disabled)::before{left:100%}
 .submit-btn:disabled{opacity:.48;cursor:not-allowed;box-shadow:none}
 .submit-btn:disabled::before{display:none}
-
-.loading-overlay{
-  visibility:hidden;opacity:0;position:fixed;inset:0;background:rgba(92,29,10,.42);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:99999;
-  display:flex;justify-content:center;align-items:center;padding:18px;transition:.35s
-}
+.loading-overlay{visibility:hidden;opacity:0;position:fixed;inset:0;background:rgba(92,29,10,.42);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:99999;display:flex;justify-content:center;align-items:center;padding:18px;transition:.35s}
 .loading-overlay.active{visibility:visible;opacity:1}
-.loading-content{
-  max-width:420px;width:100%;background:var(--ivory);padding:28px 21px;border-radius:25px;
-  box-shadow:0 25px 70px rgba(92,29,10,.25);border:1px solid var(--orange-pale);text-align:center
-}
+.loading-content{max-width:420px;width:100%;background:var(--ivory);padding:28px 21px;border-radius:25px;box-shadow:0 25px 70px rgba(92,29,10,.25);border:1px solid var(--orange-pale);text-align:center}
 .progress-ring-wrap{position:relative;width:130px;height:130px;margin:0 auto 20px}
 .progress-ring{transform:rotate(-90deg);width:100%;height:100%}
 .progress-ring-bg{fill:none;stroke:#F5F0E8;stroke-width:8}
-.progress-ring-fill{fill:none;stroke:var(--orange);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .3s linear}
+.progress-ring-fill{fill:none;stroke:var(--orange);stroke-width:8;stroke-linecap:round}
 .progress-percent{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .progress-percent .num{font-size:2rem;font-weight:800;color:var(--text);line-height:1}
 .progress-percent .pct{font-size:.8rem;font-weight:800;color:var(--orange)}
@@ -246,27 +149,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
 .step-item.active{opacity:1;background:var(--orange-light);border-color:var(--orange-pale);transform:translateX(3px)}
 .step-item.done{opacity:1;background:#F0FDF4;border-color:#86EFAC}
 .step-icon{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;background:var(--line);color:var(--muted);flex-shrink:0}
-.step-item.active .step-icon{background:var(--orange);color:#fff}.step-item.done .step-icon{background:#22C55E;color:#fff}
+.step-item.active .step-icon{background:var(--orange);color:#fff}
+.step-item.done .step-icon{background:#22C55E;color:#fff}
 .step-text{font-size:11px;font-weight:700;color:var(--text-sub)}
 .loading-bar-wrap{margin-top:18px;width:100%;height:7px;background:#F5F0E8;border-radius:10px;overflow:hidden}
 .loading-bar{height:100%;width:0;background:linear-gradient(90deg,var(--orange),#FB923C);border-radius:10px;transition:width .3s linear}
 .loading-time{margin-top:8px;font-size:10px;color:var(--muted);font-family:monospace;letter-spacing:1px}
-
 .nojs-warning{background:#FFF7E0;border-bottom:1px solid #F1E3B0;color:#7A5B00;font-size:12px;font-weight:600;text-align:center;padding:10px 16px;line-height:1.5}
-
 @media(max-width:480px){.container{box-shadow:none}}
-@media(max-width:380px){
-  .content{padding-left:14px;padding-right:14px}.progress{padding-left:15px;padding-right:15px}
-  .step-label{font-size:8px}.qris-frame{width:78%;padding:17px 13px}.qris-qr-wrap img{width:138px;height:138px}
-  .qris-frame-label{font-size:25px}.qris-amount-val{font-size:22px}
-  .banner-wrap{padding:14px 14px 0}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
-}
+@media(max-width:380px){.content{padding-left:14px;padding-right:14px}.progress{padding-left:15px;padding-right:15px}.step-label{font-size:8px}.qris-frame{width:78%;padding:17px 13px}.qris-qr-wrap img{width:138px;height:138px}.qris-frame-label{font-size:25px}.qris-amount-val{font-size:22px}.banner-wrap{padding:14px 14px 0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 <noscript><style>.loading-overlay{display:none!important}</style></noscript>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 <body>
 
@@ -274,8 +169,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
   <header class="app-header">
     <div class="topbar">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="ETATIX Icon" class="logo-img" width="42" height="42">
-        <img src="logo-saya.jpg" alt="ETATIX" class="logo-text">
+        <img src="logo.png" alt="ETATIX" class="logo-text" height="32">
       </a>
       <div class="lang">🇮🇩 ID</div>
     </div>
@@ -308,7 +202,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
   <noscript><div class="nojs-warning">⚠️ JavaScript dinonaktifkan. Aktifkan JavaScript di browser Anda untuk melihat detail pesanan dan melakukan pembayaran.</div></noscript>
 
   <div class="banner-wrap">
-    <img class="banner-img" src="banner.png" alt="COMMVAGANZA 10.0" fetchpriority="high" decoding="async" onerror="this.style.display='none';">
+    <img class="banner-img" src="banner.png" alt="COMMVAGANZA 10.0" fetchpriority="high" decoding="async">
   </div>
 
   <main class="content">
@@ -341,7 +235,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
       </div>
       <div class="qris-frame-body">
         <div class="qris-qr-wrap">
-          <img src="qris.png" alt="QRIS" id="qrisImg" width="150" height="150" loading="lazy" decoding="async">
+          <img src="qris.png" alt="QRIS" id="qrisImg" width="150" height="150" fetchpriority="high" decoding="async">
           <div class="qris-scan-line" aria-hidden="true"></div>
         </div>
         <div class="qris-frame-label">QRIS</div>
@@ -416,130 +310,180 @@ a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outl
       <div class="step-item" data-step="4"><div class="step-icon"><i class="fa-solid fa-circle-check"></i></div><div class="step-text">Status pembayaran diperbarui</div></div>
     </div>
     <div class="loading-bar-wrap"><div class="loading-bar" id="loadingBar"></div></div>
-    <div class="loading-time" id="loadingTime">00:00 / 03:00</div>
+    <div class="loading-time" id="loadingTime">00:00 / 00:03</div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const SUPABASE_URL = 'https://uhjkhptfdxfamgnpuwpg.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_4kUpyQSEX7IeHHTbAfaliQ_Em_ng8Ez';
-  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-  function formatRupiah(n) { return 'Rp' + Math.round(Number(n) || 0).toLocaleString('id-ID'); }
-  let order = {};
-  try { order = JSON.parse(localStorage.getItem('data_pemesan') || '{}'); } catch(e) { order = {}; }
-
-  const orderId = localStorage.getItem('commvaganza_order_id');
-  const orderCode = localStorage.getItem('commvaganza_order_code');
-  if (!orderId) {
-    alert('Pesanan tidak ditemukan. Silakan ulangi pemesanan.');
-    window.location.href = 'tiket.html';
-    return;
+document.addEventListener('DOMContentLoaded',function(){
+'use strict';
+const SUPABASE_URL='https://uhjkhptfdxfamgnpuwpg.supabase.co';
+const SUPABASE_KEY='sb_publishable_4kUpyQSEX7IeHHTbAfaliQ_Em_ng8Ez';
+let db=null;
+function getDB(){
+  if(!db){
+    if(typeof supabase==='undefined')throw new Error('Modul pembayaran gagal dimuat. Muat ulang halaman.');
+    db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   }
-  document.getElementById('orderId').textContent = orderCode || orderId;
+  return db;
+}
 
-  const cart = order.cart || { jenis:'-', qty:0, harga:0, totalPrice:0 };
-  const total = Number(cart.totalPrice) || (Number(cart.qty)||0) * (Number(cart.harga)||0);
-  document.getElementById('total').textContent = formatRupiah(total);
-  document.getElementById('qrisTotalAmount').textContent = formatRupiah(total);
-  document.getElementById('jenisTiket').textContent = cart.jenis || '-';
-  document.getElementById('jumlahTiket').textContent = cart.qty || 0;
-  document.getElementById('namaPemesan').textContent = order.nama || '-';
-  document.getElementById('waPemesan').textContent = order.wa || '-';
-
-  let duration = 180, timerInterval = null, isProcessing = false;
-  const timerEl = document.getElementById('timer');
-  const padZero = n => n < 10 ? '0'+n : n;
-  function timerRun(){
-    if(isProcessing) return;
-    timerEl.textContent = padZero(Math.floor(duration/60))+':'+padZero(duration%60);
-    if(duration <= 30 && duration > 0) timerEl.classList.add('urgent'); else timerEl.classList.remove('urgent');
-    if(duration <= 0){ clearInterval(timerInterval); window.location.href='index.html'; return; }
-    duration--;
-  }
-  timerRun(); timerInterval=setInterval(timerRun,1000);
-
-  let uploaded=false;
-  const fileInput=document.getElementById('file'), cekInput=document.getElementById('cek'), btn=document.getElementById('btn');
-  const previewImg=document.getElementById('previewImg'), previewBox=document.getElementById('preview');
-  const MAX_FILE_SIZE=10*1024*1024, ALLOWED_TYPES=['image/jpeg','image/png'];
-  function checkButton(){ btn.disabled=!(uploaded && cekInput.checked); }
-  fileInput.addEventListener('change',function(){
-    if(!this.files || !this.files.length) return;
-    const file=this.files[0];
-    if(!ALLOWED_TYPES.includes(file.type)){ this.value=''; uploaded=false; previewBox.style.display='none'; checkButton(); alert('Format file tidak didukung. Gunakan JPG, JPEG, atau PNG.'); return; }
-    if(file.size>MAX_FILE_SIZE){ this.value=''; uploaded=false; previewBox.style.display='none'; checkButton(); alert('Ukuran file maksimal 10 MB.'); return; }
-    uploaded=true; previewBox.style.display='block'; previewImg.src=URL.createObjectURL(file);
-    const nameEl=document.getElementById('fileName'); nameEl.textContent=file.name; checkButton();
+function formatRupiah(n){return 'Rp'+Math.round(Number(n)||0).toLocaleString('id-ID')}
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function uuid(){
+  if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+    var r=Math.random()*16|0,v=c==='x'?r:(r&0x3|0x8);
+    return v.toString(16);
   });
-  cekInput.addEventListener('change',checkButton);
+}
+function fetchWithTimeout(url,options,ms){
+  return Promise.race([fetch(url,options),new Promise(function(_,rej){setTimeout(function(){rej(new Error('Formspree timeout'))},ms)})]);
+}
 
-  const loadingOverlay=document.getElementById('loading'), progressCircle=document.getElementById('progressCircle');
-  const progressNum=document.getElementById('progressNum'), loadingBar=document.getElementById('loadingBar'), loadingTime=document.getElementById('loadingTime'), loadingSubtitle=document.getElementById('loadingSubtitle');
-  const steps=[...document.querySelectorAll('.step-item')], C=2*Math.PI*80;
-  progressCircle.style.strokeDasharray=C; progressCircle.style.strokeDashoffset=C;
-  const subtitles=['Mengunggah bukti pembayaran...','Menyimpan data bukti...','Mengirim untuk verifikasi admin...','Menunggu persetujuan pembayaran...','Bukti pembayaran diterima.'];
+let order={};
+try{order=JSON.parse(localStorage.getItem('data_pemesan')||'{}')}catch(e){order={}}
 
-  async function submitPaymentProof(file){
-    const extension = file.type === 'image/png' ? 'png' : 'jpg';
-    const path = orderId + '/' + crypto.randomUUID() + '.' + extension;
-    const {error: uploadError} = await db.storage.from('payment-proofs').upload(path, file, {
-      contentType: file.type,
-      upsert: false
-    });
-    if(uploadError) throw uploadError;
-    const {data,error} = await db.rpc('submit_payment_proof',{
-      p_order_id: orderId,
-      p_storage_path: path,
-      p_original_filename: file.name,
-      p_mime_type: file.type,
-      p_file_size: file.size
-    });
-    if(error || !data || !data.length) throw error || new Error('Bukti pembayaran gagal disimpan.');
-    try {
-      await fetch('https://formspree.io/f/mojojdpl',{
-        method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
-          event:'Bukti pembayaran baru', order_id:orderId, order_code:orderCode,
-          nama:order.nama||'', email:order.email||'', whatsapp:order.wa||'',
-          file_bukti:file.name, status:'MENUNGGU VERIFIKASI ADMIN'
-        })
-      });
-    } catch(notificationError) { console.warn('Notifikasi Formspree pembayaran:', notificationError); }
-    localStorage.setItem('commvaganza_payment_proof_submitted','1');
-    return data[0];
+const orderId=localStorage.getItem('commvaganza_order_id');
+const orderCode=localStorage.getItem('commvaganza_order_code');
+if(!orderId){
+  alert('Pesanan tidak ditemukan. Silakan ulangi pemesanan.');
+  window.location.href='tiket.html';
+  return;
+}
+document.getElementById('orderId').textContent=orderCode||orderId;
+
+const cart=order.cart||{jenis:'-',qty:0,harga:0,totalPrice:0};
+const total=Number(cart.totalPrice)||(Number(cart.qty)||0)*(Number(cart.harga)||0);
+document.getElementById('total').textContent=formatRupiah(total);
+document.getElementById('qrisTotalAmount').textContent=formatRupiah(total);
+document.getElementById('jenisTiket').textContent=cart.jenis||'-';
+document.getElementById('jumlahTiket').textContent=cart.qty||0;
+document.getElementById('namaPemesan').textContent=order.nama||'-';
+document.getElementById('waPemesan').textContent=order.wa||'-';
+
+const bannerImg=document.querySelector('.banner-img');
+if(bannerImg){
+  if(bannerImg.complete&&bannerImg.naturalWidth===0)bannerImg.style.display='none';
+  else bannerImg.addEventListener('error',function(){bannerImg.style.display='none'});
+}
+
+let duration=180,timerInterval=null,isProcessing=false;
+const timerEl=document.getElementById('timer');
+const padZero=function(n){return n<10?'0'+n:n};
+function timerRun(){
+  if(isProcessing)return;
+  timerEl.textContent=padZero(Math.floor(duration/60))+':'+padZero(duration%60);
+  if(duration<=30&&duration>0)timerEl.classList.add('urgent');else timerEl.classList.remove('urgent');
+  if(duration<=0){clearInterval(timerInterval);timerInterval=null;window.location.href='index.html';return;}
+  duration--;
+}
+timerRun();
+timerInterval=setInterval(timerRun,1000);
+
+let uploaded=false,objectUrl=null;
+const fileInput=document.getElementById('file'),cekInput=document.getElementById('cek'),btn=document.getElementById('btn');
+const previewImg=document.getElementById('previewImg'),previewBox=document.getElementById('preview');
+const MAX_FILE_SIZE=10*1024*1024,ALLOWED_TYPES=['image/jpeg','image/png'];
+function checkButton(){btn.disabled=!(uploaded&&cekInput.checked)}
+function clearSelection(){uploaded=false;previewBox.style.display='none';checkButton()}
+fileInput.addEventListener('change',function(){
+  if(!this.files||!this.files.length)return;
+  const file=this.files[0];
+  if(!ALLOWED_TYPES.includes(file.type)){this.value='';clearSelection();alert('Format file tidak didukung. Gunakan JPG, JPEG, atau PNG.');return;}
+  if(file.size>MAX_FILE_SIZE){this.value='';clearSelection();alert('Ukuran file maksimal 10 MB.');return;}
+  if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null;}
+  uploaded=true;
+  objectUrl=URL.createObjectURL(file);
+  previewImg.src=objectUrl;
+  previewBox.style.display='block';
+  document.getElementById('fileName').textContent=file.name;
+  checkButton();
+});
+cekInput.addEventListener('change',checkButton);
+
+const loadingOverlay=document.getElementById('loading'),progressCircle=document.getElementById('progressCircle');
+const progressNum=document.getElementById('progressNum'),loadingBar=document.getElementById('loadingBar'),loadingTime=document.getElementById('loadingTime'),loadingSubtitle=document.getElementById('loadingSubtitle');
+const steps=Array.from(document.querySelectorAll('.step-item'));
+const C=2*Math.PI*80;
+progressCircle.style.strokeDasharray=C;
+progressCircle.style.strokeDashoffset=C;
+const subtitles=['Mengunggah bukti pembayaran...','Menyimpan data bukti...','Mengirim untuk verifikasi admin...','Menunggu persetujuan pembayaran...','Bukti pembayaran diterima.'];
+
+async function submitPaymentProof(file){
+  const extension=file.type==='image/png'?'png':'jpg';
+  const path=orderId+'/'+uuid()+'.'+extension;
+  const{error:uploadError}=await getDB().storage.from('payment-proofs').upload(path,file,{contentType:file.type,upsert:false});
+  if(uploadError)throw uploadError;
+  const{data,error}=await getDB().rpc('submit_payment_proof',{
+    p_order_id:orderId,
+    p_storage_path:path,
+    p_original_filename:file.name,
+    p_mime_type:file.type,
+    p_file_size:file.size
+  });
+  if(error||!data||!data.length)throw error||new Error('Bukti pembayaran gagal disimpan.');
+  try{
+    await fetchWithTimeout('https://formspree.io/f/mwlkkjkw',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        event:'Bukti pembayaran baru',order_id:orderId,order_code:orderCode,
+        nama:order.nama||'',email:order.email||'',whatsapp:order.wa||'',
+        file_bukti:file.name,status:'MENUNGGU VERIFIKASI ADMIN'
+      })
+    },5000);
+  }catch(notificationError){console.warn('Notifikasi Formspree pembayaran:',notificationError);}
+  store('commvaganza_payment_proof_submitted','1');
+  return data[0];
+}
+
+async function process(){
+  if(btn.disabled||isProcessing)return;
+  const file=fileInput.files&&fileInput.files[0];
+  if(!file)return;
+  isProcessing=true;
+  clearInterval(timerInterval);timerInterval=null;
+  btn.disabled=true;
+  loadingOverlay.classList.add('active');
+  document.body.classList.add('no-scroll');
+  const start=Date.now(),DURATION=3500;
+  function frame(){
+    const progress=Math.min((Date.now()-start)/DURATION,1),pct=Math.floor(progress*100);
+    progressCircle.style.strokeDashoffset=C*(1-progress);progressNum.textContent=pct;loadingBar.style.width=pct+'%';
+    loadingTime.textContent='00:'+padZero(Math.min(Math.floor((Date.now()-start)/1000),3))+' / 00:03';
+    loadingSubtitle.textContent=subtitles[Math.min(Math.floor(progress*subtitles.length),subtitles.length-1)];
+    const active=Math.min(Math.floor(progress*steps.length),steps.length-1);
+    steps.forEach(function(el,i){el.classList.toggle('done',i<active);el.classList.toggle('active',i===active);if(i<active){const icon=el.querySelector('i');if(icon)icon.className='fa-solid fa-check';}});
+    if(progress<1)requestAnimationFrame(frame);else finish();
   }
-
-  async function process(){
-    if(btn.disabled || isProcessing) return;
-    const file=fileInput.files && fileInput.files[0];
-    if(!file) return;
-    isProcessing=true; clearInterval(timerInterval); btn.disabled=true; loadingOverlay.classList.add('active'); document.body.classList.add('no-scroll');
-    const start=Date.now(), DURATION=3500;
-    function frame(){
-      const progress=Math.min((Date.now()-start)/DURATION,1), pct=Math.floor(progress*100);
-      progressCircle.style.strokeDashoffset=C*(1-progress); progressNum.textContent=pct; loadingBar.style.width=pct+'%';
-      loadingTime.textContent='00:'+padZero(Math.floor((Date.now()-start)/1000))+' / 00:03';
-      loadingSubtitle.textContent=subtitles[Math.min(Math.floor(progress*subtitles.length),subtitles.length-1)];
-      const active=Math.min(Math.floor(progress*steps.length),steps.length-1);
-      steps.forEach((el,i)=>{el.classList.toggle('done',i<active);el.classList.toggle('active',i===active);if(i<active){const icon=el.querySelector('i');if(icon)icon.className='fa-solid fa-check';}});
-      if(progress<1) requestAnimationFrame(frame); else finish();
+  async function finish(){
+    try{
+      await submitPaymentProof(file);
+      steps.forEach(function(el){el.classList.remove('active');el.classList.add('done');const icon=el.querySelector('i');if(icon)icon.className='fa-solid fa-check';});
+      progressNum.textContent='100';loadingBar.style.width='100%';loadingSubtitle.textContent='Bukti pembayaran tersimpan. Menunggu verifikasi admin.';
+      setTimeout(function(){window.location.href='success.html'},700);
+    }catch(e){
+      console.error(e);
+      loadingOverlay.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+      isProcessing=false;
+      checkButton();
+      alert('Bukti pembayaran gagal dikirim. Pastikan koneksi internet aktif lalu coba lagi.');
     }
-    async function finish(){
-      try{
-        await submitPaymentProof(file);
-        steps.forEach(el=>{el.classList.remove('active');el.classList.add('done');const icon=el.querySelector('i');if(icon)icon.className='fa-solid fa-check';});
-        progressNum.textContent='100'; loadingBar.style.width='100%'; loadingSubtitle.textContent='Bukti pembayaran tersimpan. Menunggu verifikasi admin.';
-        setTimeout(()=>window.location.href='success.html',700);
-      }catch(e){
-        console.error(e); loadingOverlay.classList.remove('active'); document.body.classList.remove('no-scroll'); isProcessing=false; checkButton();
-        alert('Bukti pembayaran gagal dikirim. Pastikan koneksi internet aktif lalu coba lagi.');
-      }
-    }
-    requestAnimationFrame(frame);
   }
-  btn.addEventListener('click',process);
+  requestAnimationFrame(frame);
+}
+btn.addEventListener('click',process);
+
+window.addEventListener('pageshow',function(e){
+  if(e.persisted){
+    loadingOverlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+    isProcessing=false;
+    checkButton();
+    if(!timerInterval)timerInterval=setInterval(timerRun,1000);
+  }
+});
 });
 </script>
 </body>
