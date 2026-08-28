@@ -4,154 +4,71 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#F97316">
-<title>Pembayaran Diterima - COMMVAGANZA 10.0</title>
+<meta name="color-scheme" content="light">
+<meta name="description" content="Status pembayaran tiket Picnic Music Festival COMMVAGANZA 10.0 - Sabtu, 12 September 2026 di Bandar Lampung.">
+<meta property="og:title" content="Pembayaran Diterima - COMMVAGANZA 10.0">
+<meta property="og:description" content="Bukti pembayaran diterima. E-ticket akan aktif setelah verifikasi admin.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="banner.png">
+<meta property="og:locale" content="id_ID">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://uhjkhptfdxfamgnpuwpg.supabase.co" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="prefetch" href="e-ticket.html">
+<link rel="prefetch" href="index.html">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<title>Pembayaran Diterima - COMMVAGANZA 10.0</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Plus Jakarta Sans',Arial,sans-serif;
-  background:
-    radial-gradient(1200px 600px at 50% -10%,rgba(251,191,36,.1),transparent 60%),
-    radial-gradient(800px 400px at 0% 100%,rgba(249,115,22,.07),transparent 60%),
-    #FFFBF5;
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  padding:20px;color:#1C1917;
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
-}
-.card{
-  max-width:480px;width:100%;
-  background:linear-gradient(180deg,#fff 0%,#FFFCF8 100%);
-  border-radius:24px;padding:36px 28px 32px;
-  box-shadow:0 20px 50px rgba(249,115,22,.08);
-  text-align:center;border:1px solid #E7E5E4
-}
-
-.icon-wrap{
-  width:80px;height:80px;border-radius:50%;margin:0 auto 20px;
-  background:linear-gradient(135deg,#FFF7ED,#FED7AA);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 24px rgba(249,115,22,.15);
-  animation:iconFloat 3s ease-in-out infinite
-}
-@keyframes iconFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
+body{font-family:'Plus Jakarta Sans',Arial,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,rgba(251,191,36,.1),transparent 60%),radial-gradient(800px 400px at 0% 100%,rgba(249,115,22,.07),transparent 60%),#FFFBF5;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:#1C1917;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:opacity .25s ease}
+body.leaving{opacity:0}
+[hidden]{display:none!important}
+.card{max-width:480px;width:100%;background:linear-gradient(180deg,#fff 0%,#FFFCF8 100%);border-radius:24px;padding:36px 28px 32px;box-shadow:0 20px 50px rgba(249,115,22,.08);text-align:center;border:1px solid #E7E5E4}
+.icon-wrap{width:80px;height:80px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,#FFF7ED,#FED7AA);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(249,115,22,.15);animation:iconFloat 3s ease-in-out infinite}
+@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .icon-wrap svg{width:38px;height:38px;color:#EA580C}
-
 h1{font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.3}
 .desc{font-size:14px;color:#57534E;line-height:1.65;margin-bottom:24px}
-
-/* ===== CTA Email — dibuat paling menonjol ===== */
-.email-cta{
-  background:linear-gradient(145deg,#EA580C 0%,#C2410C 100%);
-  border-radius:18px;padding:24px 22px;
-  margin-bottom:18px;position:relative;overflow:hidden;
-  box-shadow:0 10px 30px rgba(234,88,12,.3)
-}
-.email-cta::before{
-  content:'';position:absolute;top:-30px;right:-30px;
-  width:100px;height:100px;border-radius:50%;
-  background:rgba(255,255,255,.06)
-}
-.email-cta::after{
-  content:'';position:absolute;bottom:-20px;left:-20px;
-  width:70px;height:70px;border-radius:50%;
-  background:rgba(255,255,255,.04)
-}
-.email-cta-icon{
-  width:52px;height:52px;border-radius:50%;margin:0 auto 14px;
-  background:rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;
-  border:2px solid rgba(255,255,255,.2);
-  animation:emailPulse 2s ease-in-out infinite
-}
-@keyframes emailPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.2)}
-  50%{box-shadow:0 0 0 10px rgba(255,255,255,0)}
-}
+.email-cta{background:linear-gradient(145deg,#EA580C 0%,#C2410C 100%);border-radius:18px;padding:24px 22px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(234,88,12,.3)}
+.email-cta::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)}
+.email-cta::after{content:'';position:absolute;bottom:-20px;left:-20px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.04)}
+.email-cta-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 14px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.2);animation:emailPulse 2s ease-in-out infinite}
+@keyframes emailPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.2)}50%{box-shadow:0 0 0 10px rgba(255,255,255,0)}}
 .email-cta-icon svg{width:26px;height:26px;color:#fff}
-.email-cta-title{
-  font-size:17px;font-weight:800;color:#fff;
-  margin-bottom:10px;position:relative;z-index:1;
-  text-shadow:0 1px 3px rgba(0,0,0,.15)
-}
-.email-cta-list{
-  list-style:none;text-align:left;
-  position:relative;z-index:1
-}
-.email-cta-list li{
-  display:flex;align-items:flex-start;gap:10px;
-  padding:7px 0;font-size:13px;font-weight:600;
-  color:rgba(255,255,255,.92);line-height:1.5
-}
+.email-cta-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:10px;position:relative;z-index:1;text-shadow:0 1px 3px rgba(0,0,0,.15)}
+.email-cta-list{list-style:none;text-align:left;position:relative;z-index:1}
+.email-cta-list li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:13px;font-weight:600;color:rgba(255,255,255,.92);line-height:1.5}
 .email-cta-list li+li{border-top:1px solid rgba(255,255,255,.12)}
-.email-cta-list .li-icon{
-  width:20px;height:20px;flex-shrink:0;margin-top:2px;
-  display:flex;align-items:center;justify-content:center
-}
+.email-cta-list .li-icon{width:20px;height:20px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
 .email-cta-list .li-icon svg{width:16px;height:16px}
 .email-cta-list strong{color:#fff;font-weight:800}
-
-/* ===== Info box biasa ===== */
-.info-box{
-  background:linear-gradient(135deg,#FFF7ED,#FFFBF5);
-  border:1px solid #FED7AA;border-radius:14px;
-  padding:16px 18px;margin-bottom:20px;text-align:left
-}
-.info-box p{
-  font-size:13px;color:#57534E;line-height:1.6;margin:0;
-  display:flex;align-items:flex-start;gap:10px
-}
-.info-icon{
-  width:22px;height:22px;flex-shrink:0;margin-top:1px;color:#EA580C
-}
+.info-box{background:linear-gradient(135deg,#FFF7ED,#FFFBF5);border:1px solid #FED7AA;border-radius:14px;padding:16px 18px;margin-bottom:20px;text-align:left}
+.info-box p{font-size:13px;color:#57534E;line-height:1.6;margin:0;display:flex;align-items:flex-start;gap:10px}
+.info-icon{width:22px;height:22px;flex-shrink:0;margin-top:1px;color:#EA580C}
 .info-icon svg{width:22px;height:22px}
-
 .countdown-wrap{margin-bottom:24px}
 .countdown-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#A8A29E;margin-bottom:8px}
 .countdown-bar{width:100%;height:6px;background:#F5F0E8;border-radius:10px;overflow:hidden}
 .countdown-fill{height:100%;width:100%;background:linear-gradient(90deg,#F97316,#FB923C);border-radius:10px;transition:width 1s linear}
-.countdown-num{font-size:13px;font-weight:700;color:#EA580C;margin-top:8px}
-
+.countdown-num{font-size:13px;font-weight:700;color:#EA580C;margin-top:8px;min-height:18px}
 .footer-text{font-size:18px;line-height:1.4;color:#1C1917;font-weight:600}
-
-.home-link{
-  display:inline-block;text-decoration:none;
-  background:linear-gradient(135deg,#F97316,#EA580C);
-  color:#fff;padding:13px 32px;border-radius:12px;
-  margin-top:20px;font-weight:700;font-size:14px;
-  box-shadow:0 8px 20px rgba(249,115,22,.3),inset 0 1px 0 rgba(255,255,255,.2);
-  transition:all .25s ease;position:relative;overflow:hidden
-}
-.home-link::before{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
-  transition:left .6s ease
-}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.home-link{display:inline-block;text-decoration:none;background:linear-gradient(135deg,#F97316,#EA580C);color:#fff;padding:13px 32px;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 8px 20px rgba(249,115,22,.3),inset 0 1px 0 rgba(255,255,255,.2);transition:all .25s ease;position:relative;overflow:hidden}
+.home-link::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .6s ease}
 .home-link:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(249,115,22,.4),inset 0 1px 0 rgba(255,255,255,.2)}
 .home-link:hover::before{left:100%}
 .home-link:active{transform:scale(.98)}
-
-@media(prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .icon-wrap{animation:none}
-  .email-cta-icon{animation:none}
-}
-@media(max-width:400px){
-  .card{padding:28px 20px 24px}
-  h1{font-size:18px}
-  .desc{font-size:13px}
-  .email-cta{padding:20px 18px}
-  .email-cta-title{font-size:16px}
-  .email-cta-list li{font-size:12px}
-}
+.nojs-warning{background:#FFF7E0;border-bottom:1px solid #F1E3B0;color:#7A5B00;font-size:12px;font-weight:600;text-align:center;padding:10px 16px;line-height:1.5}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.icon-wrap,.email-cta-icon{animation:none}}
+@media(max-width:400px){.card{padding:28px 20px 24px}h1{font-size:18px}.desc{font-size:13px}.email-cta{padding:20px 18px}.email-cta-title{font-size:16px}.email-cta-list li{font-size:12px}}
 </style>
 </head>
 <body>
+<noscript><style>.loading-overlay,.countdown-wrap{display:none!important}#ticketLink{display:inline-block!important}</style><div class="nojs-warning">⚠️ JavaScript dinonaktifkan. Status pembayaran tidak dapat diperiksa otomatis.</div></noscript>
 <main class="card">
   <div class="icon-wrap" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -184,45 +101,131 @@ h1{font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.3}
 
   <div class="footer-text">Terimakasih 🙂</div>
 
-  <a class="home-link" id="ticketLink" href="e-ticket.html" style="display:none">Lihat E-Ticket</a>
-  <a class="home-link" href="index.html" style="margin-left:8px">Kembali ke Beranda</a>
+  <div class="cta-row">
+    <a class="home-link" id="ticketLink" href="e-ticket.html" hidden>Lihat E-Ticket</a>
+    <a class="home-link" href="index.html">Kembali ke Beranda</a>
+  </div>
 </main>
 
 <script>
-(function(){
-  const SUPABASE_URL='https://uhjkhptfdxfamgnpuwpg.supabase.co';
-  const SUPABASE_KEY='sb_publishable_4kUpyQSEX7IeHHTbAfaliQ_Em_ng8Ez';
-  const orderId=localStorage.getItem('commvaganza_order_id');
-  const orderCode=localStorage.getItem('commvaganza_order_code') || '-';
-  document.getElementById('orderCode').textContent=orderCode;
-  if(!orderId){ document.getElementById('statusTitle').textContent='Pesanan Tidak Ditemukan'; document.getElementById('statusDesc').textContent='Silakan ulangi proses pemesanan.'; return; }
-  const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-  const statusEl=document.getElementById('paymentStatus'), desc=document.getElementById('statusDesc'), msg=document.getElementById('ticketMessage'), link=document.getElementById('ticketLink'), pollNum=document.getElementById('countdownNum');
-  let attempts=0, maxAttempts=60, stopped=false;
-  async function check(){
-    if(stopped)return;
-    try{
-      const {data,error}=await db.rpc('get_public_order_status',{p_order_id:orderId});
-      if(error) throw error;
-      if(!data || !data.length) throw new Error('Order tidak ditemukan');
-      const row=data[0]; statusEl.textContent=row.status;
-      if(row.status==='PAID'){
-        stopped=true; desc.textContent='Pembayaran telah disetujui. E-ticket Anda sudah aktif.'; msg.textContent='Klik tombol Lihat E-Ticket untuk membuka tiket digital Anda.'; link.style.display='inline-block';
-        const codes=row.ticket_codes||[]; if(codes.length) localStorage.setItem('commvaganza_ticket_codes',JSON.stringify(codes));
-        pollNum.textContent='Pembayaran disetujui';
-        if(codes.length===1) link.href='e-ticket.html?code='+encodeURIComponent(codes[0]);
-        return;
-      }
-      if(row.status==='CANCELLED'){
-        stopped=true; desc.textContent='Pembayaran ditolak atau pesanan dibatalkan. Silakan membuat pesanan baru jika ingin mencoba kembali.'; msg.textContent='Order ini tidak dapat digunakan untuk mendapatkan e-ticket.'; pollNum.textContent='Ditolak / dibatalkan'; return;
-      }
-      attempts++;
-      const remain=Math.max(0,maxAttempts-attempts); pollNum.textContent=remain+' pemeriksaan tersisa';
-      if(attempts<maxAttempts) setTimeout(check,5000); else { stopped=true; pollNum.textContent='Belum disetujui'; msg.textContent='Verifikasi masih berlangsung. Buka kembali halaman ini nanti untuk memeriksa status terbaru.'; }
-    }catch(e){ console.error(e); attempts++; if(attempts<maxAttempts)setTimeout(check,5000); else {stopped=true;pollNum.textContent='Tidak dapat memeriksa status';} }
+document.addEventListener('DOMContentLoaded',function(){
+'use strict';
+const SUPABASE_URL='https://uhjkhptfdxfamgnpuwpg.supabase.co';
+const SUPABASE_KEY='sb_publishable_4kUpyQSEX7IeHHTbAfaliQ_Em_ng8Ez';
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function storeJSON(k,v){store(k,JSON.stringify(v))}
+
+const statusTitle=document.getElementById('statusTitle');
+const statusEl=document.getElementById('paymentStatus');
+const desc=document.getElementById('statusDesc');
+const msg=document.getElementById('ticketMessage');
+const link=document.getElementById('ticketLink');
+const pollNum=document.getElementById('countdownNum');
+const pollWrap=document.getElementById('pollWrap');
+const fill=document.getElementById('countdownFill');
+
+const orderId=load('commvaganza_order_id');
+const orderCode=load('commvaganza_order_code')||'-';
+document.getElementById('orderCode').textContent=orderCode;
+
+if(!orderId){
+  statusTitle.textContent='Pesanan Tidak Ditemukan';
+  desc.textContent='Silakan ulangi proses pemesanan.';
+  pollWrap.hidden=true;
+  return;
+}
+
+let db=null,attempts=0,maxAttempts=60,stopped=false,timerId=null;
+
+function scheduleCheck(){
+  if(stopped||timerId!==null)return;
+  timerId=setTimeout(function(){timerId=null;check()},5000);
+}
+
+function updatePoll(){
+  const remain=Math.max(0,maxAttempts-attempts);
+  if(attempts>=maxAttempts){
+    stopped=true;
+    pollNum.textContent='Belum disetujui';
+    msg.textContent='Verifikasi masih berlangsung. Buka kembali halaman ini nanti untuk memeriksa status terbaru.';
+    fill.style.width='0%';
+    return;
   }
-  if(window.supabase) check(); else { pollNum.textContent='Supabase belum termuat'; }
-})();
+  pollNum.textContent=remain+' pemeriksaan tersisa';
+  fill.style.width=Math.round(remain/maxAttempts*100)+'%';
+}
+
+async function check(){
+  if(stopped)return;
+  try{
+    const{data,error}=await db.rpc('get_public_order_status',{p_order_id:orderId});
+    if(error)throw error;
+    if(!data||!data.length)throw new Error('Order tidak ditemukan');
+    const row=data[0];
+    statusEl.textContent=row.status;
+    if(row.status==='PAID'){
+      stopped=true;
+      desc.textContent='Pembayaran telah disetujui. E-ticket Anda sudah aktif.';
+      msg.textContent='Klik tombol Lihat E-Ticket untuk membuka tiket digital Anda.';
+      link.hidden=false;
+      pollNum.textContent='Pembayaran disetujui';
+      fill.style.width='0%';
+      const codes=row.ticket_codes||[];
+      if(codes.length)storeJSON('commvaganza_ticket_codes',codes);
+      if(codes.length===1)link.href='e-ticket.html?code='+encodeURIComponent(codes[0]);
+      return;
+    }
+    if(row.status==='CANCELLED'){
+      stopped=true;
+      desc.textContent='Pembayaran ditolak atau pesanan dibatalkan. Silakan membuat pesanan baru jika ingin mencoba kembali.';
+      msg.textContent='Order ini tidak dapat digunakan untuk mendapatkan e-ticket.';
+      pollNum.textContent='Ditolak / dibatalkan';
+      fill.style.width='0%';
+      return;
+    }
+    attempts++;
+    updatePoll();
+    scheduleCheck();
+  }catch(e){
+    console.error(e);
+    attempts++;
+    updatePoll();
+    scheduleCheck();
+  }
+}
+
+let waitTries=0;
+function boot(){
+  if(window.supabase){
+    db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+    check();
+  }else if(waitTries<10){
+    waitTries++;
+    setTimeout(boot,1000);
+  }else{
+    pollNum.textContent='Tidak dapat terhubung ke server';
+  }
+}
+boot();
+
+document.querySelectorAll('a.home-link').forEach(a=>{
+  a.addEventListener('click',function(e){
+    if(reduceMotion.matches)return;
+    e.preventDefault();
+    document.body.classList.add('leaving');
+    const href=this.getAttribute('href');
+    setTimeout(function(){window.location.href=href},250);
+  });
+});
+
+window.addEventListener('pageshow',function(e){
+  document.body.classList.remove('leaving');
+  if(e.persisted&&!stopped&&timerId===null&&db)scheduleCheck();
+});
+});
 </script>
 </body>
 </html>
