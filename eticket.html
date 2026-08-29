@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F97316"><title>E-Ticket — COMMVAGANZA 10.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#f97316;--od:#ea580c;--bg:#fffbf5;--text:#1c1917;--muted:#78716c;--line:#e7e5e4;--green:#16a34a;--red:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 50% -10%,#fed7aa55,transparent 60%),var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",Arial,sans-serif}.wrap{max-width:650px;margin:auto;padding:24px 16px 70px}.top{text-align:center;margin:18px 0 20px}.logo{width:50px;height:50px;object-fit:contain;border-radius:13px}.top h1{font-size:24px;margin:12px 0 5px}.top p{margin:0;color:var(--muted);font-size:13px}.notice{padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line);margin-bottom:16px;text-align:center;font-size:13px;line-height:1.6}.pending{background:#fff7ed;color:#9a3412;border-color:#fed7aa}.error{background:#fef2f2;color:#991b1b;border-color:#fecaca}.tickets{display:grid;gap:18px}.ticket{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 35px #1c19170d}.ticket-head{padding:20px;background:linear-gradient(135deg,var(--o),var(--od));color:#fff}.ticket-head small{opacity:.8;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.ticket-head h2{font-size:20px;margin:5px 0}.ticket-body{padding:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.item{padding:10px 0;border-bottom:1px dashed var(--line)}.item small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800}.item strong{display:block;margin-top:3px;font-size:13px}.qr{display:grid;place-items:center;padding:15px;margin:18px 0;border:1px dashed #d6d3d1;border-radius:15px;background:#fffbf5}.qr canvas,.qr img{max-width:100%}.code{text-align:center;font-family:ui-monospace,monospace;font-weight:800;letter-spacing:.05em;font-size:14px}.foot{text-align:center;color:var(--muted);font-size:11px;line-height:1.6;margin-top:18px}.btn{display:inline-block;border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--text)}@media(max-width:500px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top"><img src="logo.png" class="logo" alt="COMMVAGANZA"><h1>E-Ticket COMMVAGANZA 10.0</h1><p>12 September 2026 · Bandar Lampung</p></header>
+<div id="notice" class="notice">Memeriksa status pesanan...</div>
+<section id="tickets" class="tickets"></section>
+<div style="text-align:center;margin-top:18px"><a class="btn" href="index.html">Kembali ke Beranda</a></div>
+<p class="foot">Tunjukkan QR code tiket yang sesuai saat masuk. Jangan membagikan kode tiket kepada orang lain.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script src="config.js"></script>
+<script>
+'use strict';
+const db=supabase.createClient(APP_CONFIG.SUPABASE_URL,APP_CONFIG.SUPABASE_ANON_KEY);
+const id=localStorage.getItem('commvaganza_order_id'),code=localStorage.getItem('commvaganza_order_code');
+const notice=document.getElementById('notice'),tickets=document.getElementById('tickets');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+if(!id||!code){notice.className='notice error';notice.textContent='Pesanan tidak ditemukan. Silakan mulai dari halaman tiket.';}
+let lastStatus='';
+async function load(){
+ if(!id||!code)return;
+ const {data,error}=await db.rpc('get_public_order',{p_order_id:id,p_order_code:code});
+ if(error||!data?.length){notice.className='notice error';notice.textContent='Pesanan tidak ditemukan atau kode tidak cocok.';return;}
+ const o=data[0];lastStatus=o.status;
+ if(o.status==='PENDING_PAYMENT'){notice.className='notice pending';notice.innerHTML='Pesanan <b>'+esc(o.order_code)+'</b> masih menunggu pembayaran. <a href="qris.html">Kembali ke pembayaran</a>';return;}
+ if(o.status==='PROOF_SUBMITTED'){notice.className='notice pending';notice.innerHTML='Bukti pembayaran sudah diterima untuk <b>'+esc(o.order_code)+'</b>. Tunggu verifikasi admin. Halaman ini akan memperbarui otomatis.';return;}
+ if(o.status==='CANCELLED'||o.status==='EXPIRED'){notice.className='notice error';notice.textContent='Pesanan '+o.order_code+' sudah '+o.status+'. Silakan membuat pesanan baru.';tickets.innerHTML='';return;}
+ const {data:et,error:ee}=await db.rpc('get_public_etickets',{p_order_id:id,p_order_code:code});
+ if(ee||!et?.length){notice.className='notice pending';notice.textContent='Pembayaran sudah disetujui, tetapi e-ticket sedang disiapkan. Muat ulang beberapa saat lagi.';return;}
+ notice.className='notice';notice.innerHTML='Pembayaran <b>terverifikasi</b>. E-ticket resmi Anda sudah terbit.';
+ if(tickets.dataset.rendered===code)return;
+ tickets.dataset.rendered=code;tickets.innerHTML='';
+ et.forEach(t=>{
+  const el=document.createElement('article');el.className='ticket';
+  el.innerHTML='<div class="ticket-head"><small>COMMVAGANZA 10.0</small><h2>Normal Sale 2</h2><div>12 September 2026 · Bandar Lampung</div></div><div class="ticket-body"><div class="grid"><div class="item"><small>Pemegang</small><strong>'+esc(t.holder_name)+'</strong></div><div class="item"><small>No. Tiket</small><strong>#'+t.ticket_no+'</strong></div></div><div class="qr"><canvas></canvas></div><div class="code">'+esc(t.ticket_code)+'</div></div>';
+  tickets.appendChild(el);
+  QRCode.toCanvas(el.querySelector('canvas'),JSON.stringify({event:'COMMVAGANZA10',ticket:t.ticket_code,order:o.order_code}),{width:210,margin:2});
+ });
+}
+load();setInterval(load,8000);
+</script>
+</body>
+</html>
