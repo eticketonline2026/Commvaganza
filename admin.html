@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — COMMVAGANZA 10.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#f97316;--od:#ea580c;--bg:#fffbf5;--text:#1c1917;--muted:#78716c;--line:#e7e5e4;--green:#16a34a;--red:#dc2626;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",Arial,sans-serif}button,input,select{font:inherit}
+.wrap{max-width:1180px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}.brand h1{margin:0;font-size:25px}.brand p{margin:5px 0 0;color:var(--muted);font-size:13px}.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--o),var(--od));color:#fff}.ghost{background:#fff;border:1px solid var(--line)}.danger{background:#fee2e2;color:#b91c1c}.login,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px #1c19170d}.login{max-width:420px;margin:9vh auto;padding:28px}.login h1{margin:0 0 7px}.login p{color:var(--muted);font-size:13px;line-height:1.6}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;padding:12px;border:1px solid #d6d3d1;border-radius:10px;background:#fff;outline:0}.field input:focus,.field select:focus{border-color:var(--o);box-shadow:0 0 0 3px #f9731630}.error{color:var(--red);font-size:12px;margin-top:10px}.hidden{display:none!important}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:15px}.toolbar select{padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px}.stat{padding:17px;background:#fff;border:1px solid var(--line);border-radius:15px}.stat small{display:block;color:var(--muted);font-weight:700}.stat strong{font-size:25px;display:block;margin-top:5px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:880px}.table th,.table td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:12px;vertical-align:top}.table th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.code{font-family:ui-monospace,monospace;font-weight:800}.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:800}.pending{background:#ffedd5;color:#c2410c}.proof{background:#fef3c7;color:#a16207}.paid{background:#dcfce7;color:#15803d}.cancel{background:#fee2e2;color:#b91c1c}.expired{background:#e7e5e4;color:#57534e}.actions{display:flex;gap:6px;flex-wrap:wrap}.detail{margin-top:16px;padding:18px;border:1px solid var(--line);border-radius:15px;background:#fff}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px;font-size:13px}.detail-grid div{padding:7px 0;border-bottom:1px dashed var(--line)}.detail-grid b{display:block;font-size:10px;color:var(--muted);text-transform:uppercase}.proof-img{max-width:100%;max-height:520px;border-radius:12px;border:1px solid var(--line);margin-top:12px}.holder{padding:10px 0;border-bottom:1px solid var(--line)}.notice{padding:12px;border-radius:10px;background:#fff7ed;color:#9a3412;font-size:12px;margin-bottom:14px}
+@media(max-width:700px){.wrap{padding:15px}.stats{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.detail-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="loginView" class="login">
+  <h1>Admin COMMVAGANZA</h1><p>Masuk menggunakan akun Supabase Auth yang sudah didaftarkan sebagai admin.</p>
+  <form id="loginForm">
+    <div class="field"><label>Email</label><input id="email" type="email" autocomplete="username" required></div>
+    <div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+    <button class="btn primary" style="width:100%" type="submit">Masuk</button>
+    <div id="loginError" class="error"></div>
+  </form>
+</div>
+
+<div id="app" class="wrap hidden">
+  <header class="top"><div class="brand"><h1>Dashboard Pesanan</h1><p>COMMVAGANZA 10.0 · verifikasi pembayaran & e-ticket</p></div><button id="logout" class="btn ghost">Keluar</button></header>
+  <div id="notice" class="notice hidden"></div>
+  <div class="stats">
+    <div class="stat"><small>Total</small><strong id="sTotal">0</strong></div>
+    <div class="stat"><small>Menunggu bukti</small><strong id="sPending">0</strong></div>
+    <div class="stat"><small>Perlu verifikasi</small><strong id="sProof">0</strong></div>
+    <div class="stat"><small>Terbayar</small><strong id="sPaid">0</strong></div>
+  </div>
+  <section class="panel" style="padding:16px">
+    <div class="toolbar">
+      <select id="filter"><option value="">Semua status</option><option value="PENDING_PAYMENT">PENDING_PAYMENT</option><option value="PROOF_SUBMITTED">PROOF_SUBMITTED</option><option value="PAID">PAID</option><option value="CANCELLED">CANCELLED</option><option value="EXPIRED">EXPIRED</option></select>
+      <button id="refresh" class="btn ghost">↻ Refresh</button>
+    </div>
+    <div class="table-wrap"><table class="table"><thead><tr><th>Order</th><th>Pemesan</th><th>Tiket</th><th>Total</th><th>Status</th><th>Dibuat</th><th>Aksi</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div id="detail" class="detail hidden"></div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+'use strict';
+const db=supabase.createClient(APP_CONFIG.SUPABASE_URL,APP_CONFIG.SUPABASE_ANON_KEY);
+const $=id=>document.getElementById(id);
+const money=n=>'Rp'+Math.round(Number(n)||0).toLocaleString('id-ID');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const statusClass=s=>({PENDING_PAYMENT:'pending',PROOF_SUBMITTED:'proof',PAID:'paid',CANCELLED:'cancel',EXPIRED:'expired'}[s]||'expired');
+let orders=[];
+
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('loginError').textContent='';
+ const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+ if(error){$('loginError').textContent=error.message;return;}
+ await boot();
+});
+$('logout').onclick=async()=>{await db.auth.signOut();$('app').classList.add('hidden');$('loginView').classList.remove('hidden');};
+$('refresh').onclick=loadOrders;$('filter').onchange=loadOrders;
+
+async function boot(){
+ const {data:{user}}=await db.auth.getUser();
+ if(!user){$('app').classList.add('hidden');$('loginView').classList.remove('hidden');return;}
+ $('loginView').classList.add('hidden');$('app').classList.remove('hidden');await loadOrders();
+}
+function showNotice(t){$('notice').textContent=t;$('notice').classList.remove('hidden');setTimeout(()=>$('notice').classList.add('hidden'),4500)}
+async function loadOrders(){
+ $('rows').innerHTML='<tr><td colspan="7">Memuat...</td></tr>';
+ const f=$('filter').value||null;
+ const {data,error}=await db.rpc('admin_list_orders',{p_status:f});
+ if(error){$('rows').innerHTML='<tr><td colspan="7">Gagal memuat: '+esc(error.message)+'</td></tr>';return;}
+ orders=data||[]; render();
+}
+function render(){
+ $('sTotal').textContent=orders.length;
+ $('sPending').textContent=orders.filter(x=>x.status==='PENDING_PAYMENT').length;
+ $('sProof').textContent=orders.filter(x=>x.status==='PROOF_SUBMITTED').length;
+ $('sPaid').textContent=orders.filter(x=>x.status==='PAID').length;
+ $('rows').innerHTML=orders.map(o=>`<tr>
+ <td><span class="code">${esc(o.order_code)}</span><br><small>${esc(o.id)}</small></td>
+ <td><b>${esc(o.customer_name)}</b><br>${esc(o.customer_email)}<br>${esc(o.customer_whatsapp)}</td>
+ <td>${o.qty} × ${money(o.unit_price)}</td><td><b>${money(o.total_amount)}</b></td>
+ <td><span class="badge ${statusClass(o.status)}">${esc(o.status)}</span></td>
+ <td>${new Date(o.created_at).toLocaleString('id-ID')}</td>
+ <td><div class="actions"><button class="btn ghost" onclick="detailOrder('${o.id}')">Detail</button>${o.status==='PROOF_SUBMITTED'?`<button class="btn primary" onclick="setStatus('${o.id}','APPROVE')">Setujui</button><button class="btn danger" onclick="setStatus('${o.id}','REJECT')">Tolak</button>`:''}</div></td>
+ </tr>`).join('')||'<tr><td colspan="7">Belum ada pesanan.</td></tr>';
+}
+window.detailOrder=async id=>{
+ const o=orders.find(x=>x.id===id);if(!o)return;
+ const {data:holders,error}=await db.rpc('admin_order_holders',{p_order_id:id});
+ if(error){showNotice(error.message);return;}
+ let proof='';
+ if(o.payment_proof_path){
+   const {data,error:se}=await db.storage.from('payment-proofs').createSignedUrl(o.payment_proof_path,300);
+   if(!se&&data?.signedUrl) proof=`<div><b>Bukti pembayaran</b><br><img class="proof-img" src="${esc(data.signedUrl)}" alt="Bukti pembayaran"></div>`;
+ }
+ $('detail').classList.remove('hidden');
+ $('detail').innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3 style="margin:0">Detail ${esc(o.order_code)}</h3><button class="btn ghost" onclick="$('detail').classList.add('hidden')">Tutup</button></div>
+ <div class="detail-grid" style="margin-top:12px">
+ <div><b>Nama</b>${esc(o.customer_name)}</div><div><b>Email</b>${esc(o.customer_email)}</div>
+ <div><b>WhatsApp</b>${esc(o.customer_whatsapp)}</div><div><b>Jenis identitas</b>${esc(o.customer_identity_type)}</div>
+ <div><b>Nomor identitas</b>${esc(o.customer_identity_number)}</div><div><b>Alamat</b>${esc(o.customer_address)}</div>
+ <div><b>Tiket</b>${o.qty} × ${money(o.unit_price)}</div><div><b>Total</b>${money(o.total_amount)}</div>
+ </div><h4>Pemegang tiket</h4>${(holders||[]).map(h=>`<div class="holder"><b>#${h.ticket_no} ${esc(h.name)}</b><br>${esc(h.email)} · ${esc(h.whatsapp)}</div>`).join('')}${proof||'<p style="color:var(--muted)">Belum ada bukti pembayaran.</p>'}`;
+ $('detail').scrollIntoView({behavior:'smooth',block:'start'});
+};
+window.setStatus=async(id,action)=>{
+ const msg=action==='APPROVE'?'Setujui pembayaran dan terbitkan e-ticket?':'Tolak bukti pembayaran dan batalkan reservasi?';
+ if(!confirm(msg))return;
+ const {error}=await db.rpc('admin_set_order_status',{p_order_id:id,p_action:action});
+ if(error){showNotice(error.message);return;}
+ showNotice(action==='APPROVE'?'Pembayaran disetujui. E-ticket diterbitkan.':'Pesanan ditolak.');await loadOrders();
+};
+db.auth.onAuthStateChange((event,session)=>{if(session)boot();});
+boot();
+</script>
+</body>
+</html>
